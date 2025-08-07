@@ -6,121 +6,114 @@
     <title>Your Name - AI Researcher</title>
     <style>
         body {
-            font-family: 'Georgia', 'Times New Roman', Times, serif;
-            line-height: 1.8;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
-            background: #fdfdfd;
+            background: #f4f4f4;
             color: #333;
-        }
-        .container {
-            width: 70%;
-            max-width: 960px;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px 0;
-        }
-        header {
-            background: #2c3e50;
-            color: #fff;
-            padding: 2rem 0;
-            text-align: center;
-            border-bottom: 4px solid #3498db;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 3rem;
-            font-weight: normal;
-        }
-        header p {
-            font-size: 1.3rem;
-            color: #ecf0f1;
-        }
-        nav {
-            background: #34495e;
-            color: #fff;
-            padding: 0.5rem 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        nav a {
-            color: #fff;
-            padding: 1rem 1.5rem;
-            text-decoration: none;
-            display: inline-block;
-        }
-        nav a:hover {
-            background: #3498db;
-            color: #fff;
-        }
-        section {
-            padding: 40px 20px;
-            margin-bottom: 20px;
-            background: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        .about-me-container {
             display: flex;
+        }
+        .sidebar {
+            width: 280px;
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 30px;
+            height: 100vh;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 30px;
-        }
-        .about-text {
-            flex: 3;
-        }
-        .profile-pic-container {
-            flex: 1;
             text-align: center;
+        }
+        .main-content {
+            margin-left: 280px;
+            padding: 40px;
+            width: calc(100% - 280px);
         }
         .profile-pic {
-            width: 180px;
-            height: 180px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #3498db;
+            border: 4px solid #34495e;
+            margin-bottom: 15px;
+        }
+        .sidebar h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        .sidebar p {
+            font-size: 1rem;
+            color: #bdc3c7;
+        }
+        .sidebar nav {
+            width: 100%;
+            margin: 30px 0;
+        }
+        .sidebar nav a {
+            display: block;
+            color: #ecf0f1;
+            padding: 10px 0;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 5px;
+        }
+        .sidebar nav a:hover, .sidebar nav a.active {
+            background: #34495e;
         }
         .cv-button {
             display: inline-block;
             background: #3498db;
             color: #fff;
-            padding: 12px 25px;
+            padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
-            margin-top: 20px;
             transition: background-color 0.3s ease;
+            margin-bottom: 20px;
         }
         .cv-button:hover {
             background: #2980b9;
         }
+        .contact-info a {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin: 0 8px;
+            font-size: 1.2rem;
+        }
+        .contact-info a:hover {
+            color: #fff;
+        }
+        section {
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
         .publication {
-            margin-bottom: 25px;
-            padding-left: 20px;
-            border-left: 3px solid #ecf0f1;
+            margin-bottom: 20px;
         }
         .publication-title {
             font-weight: bold;
             font-size: 1.1rem;
-            color: #34495e;
         }
         .authors {
             font-style: italic;
-            color: #555;
         }
         .authors strong {
             font-style: normal;
             font-weight: bold;
         }
         .venue {
-            color: #777;
+            color: #555;
         }
         .links a {
             margin-right: 15px;
@@ -134,9 +127,8 @@
         footer {
             text-align: center;
             padding: 20px;
-            background: #2c3e50;
-            color: #fff;
-            margin-top: 30px;
+            color: #777;
+            font-size: 0.9rem;
         }
         ul {
             list-style-type: none;
@@ -154,38 +146,37 @@
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <h1>[Your Name]</h1>
-            <p>AI Researcher | [Your Sub-field, e.g., NLP, Computer Vision]</p>
+    <div class="sidebar">
+        <img src="profile.jpg" alt="Your Name" class="profile-pic">
+        <h1>[Your Name]</h1>
+        <p>AI Researcher</p>
+
+        <nav>
+            <a href="#about" class="active">About Me</a>
+            <a href="#research">Research</a>
+            <a href="#publications">Publications</a>
+            <a href="#projects">Projects</a>
+        </nav>
+
+        <a href="CV.pdf" class="cv-button">Download CV</a>
+
+        <div class="contact-info">
+            <a href="mailto:your.email@example.com" title="Email">[E]</a>
+            <a href="https://github.com/your-username" title="GitHub">[G]</a>
+            <a href="#" title="Google Scholar">[S]</a>
+            <a href="#" title="LinkedIn">[L]</a>
         </div>
-    </header>
+    </div>
 
-    <nav>
-        <a href="#about">About Me</a>
-        <a href="#research">Research</a>
-        <a href="#publications">Publications</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-    </nav>
-
-    <div class="container">
+    <div class="main-content">
         <section id="about">
             <h2>About Me</h2>
-            <div class="about-me-container">
-                <div class="profile-pic-container">
-                    <img src="profile.jpg" alt="Your Name" class="profile-pic">
-                </div>
-                <div class="about-text">
-                    <p>
-                        Hello! I am an AI Researcher passionate about [Your specific interests, e.g., reinforcement learning, natural language processing, computer vision]. I am currently seeking opportunities for [e.g., a Ph.D. program, postdoctoral research, industry collaboration]. My goal is to leverage artificial intelligence to solve complex problems and contribute to the frontiers of knowledge.
-                    </p>
-                    <p>
-                        Here you can add more about your background, your academic journey, what motivates you, and what kind of opportunities you are looking for.
-                    </p>
-                    <a href="CV.pdf" class="cv-button">Download My CV</a>
-                </div>
-            </div>
+            <p>
+                Hello! I am an AI Researcher passionate about [Your specific interests, e.g., reinforcement learning, natural language processing, computer vision]. I am currently seeking opportunities for [e.g., a Ph.D. program, postdoctoral research, industry collaboration]. My goal is to leverage artificial intelligence to solve complex problems and contribute to the frontiers of knowledge.
+            </p>
+            <p>
+                Here you can add more about your background, your academic journey, what motivates you, and what kind of opportunities you are looking for.
+            </p>
         </section>
 
         <section id="research">
@@ -194,7 +185,6 @@
                 <li><strong>Primary Interest 1:</strong> A brief description of your primary research interest. Why it's important and what you have done.</li>
                 <li><strong>Primary Interest 2:</strong> A brief description of your second research interest.</li>
                 <li><strong>Secondary Interest 1:</strong> A brief description of a secondary interest.</li>
-                <li><strong>Secondary Interest 2:</strong> A brief description of another secondary interest.</li>
             </ul>
         </section>
 
@@ -219,7 +209,6 @@
                     <a href="#">[Slides]</a>
                 </p>
             </div>
-             <!-- Add more publications as needed -->
         </section>
 
         <section id="projects">
@@ -239,25 +228,12 @@
                     <a href="#">[GitHub]</a>
                 </p>
             </div>
-            <!-- Add more projects as needed -->
         </section>
 
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>I am always open to discussing research, new ideas, or potential collaborations.</p>
-            <ul>
-                <li><strong>Email:</strong> your.email@example.com</li>
-                <li><strong>GitHub:</strong> <a href="https://github.com/your-username">your-username</a></li>
-                <li><strong>Google Scholar:</strong> <a href="#">[Link to your profile]</a></li>
-                <li><strong>LinkedIn:</strong> <a href="#">[Link to your profile]</a></li>
-                <li><strong>Twitter:</strong> <a href="#">@your_handle</a></li>
-            </ul>
-        </section>
+        <footer>
+            <p>&copy; 2024 [Your Name]. All Rights Reserved.</p>
+        </footer>
     </div>
-
-    <footer>
-        <p>&copy; 2024 [Your Name]. All Rights Reserved.</p>
-    </footer>
 
 </body>
 </html> 
